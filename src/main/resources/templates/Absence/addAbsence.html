@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Edumin - Bootstrap Admin Dashboard </title>
+   <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+	
+	<!-- Pick date -->
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/default.date.css}">
+
+</head>
+
+<body>
+
+    <div th:insert="fragments/sidebar :: sidebar"></div>
+		
+		
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+				    
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Add Absence</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Courses</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Add Course</a></li>
+                        </ol>
+                    </div>
+                </div>
+                
+                
+               
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-header">
+								<h2>Ajouter une absence pour <span th:text="${etudiant.nom} + ' ' + ${etudiant.prenom}"></span></h2>
+					
+							</div>
+						 <div class="container mt-5">
+        
+        <form th:action="@{/absences/etudiant/{etudiantId}/ajouter-absence(etudiantId=${etudiant.id})}" method="post">
+			
+			
+			
+										
+            <div class="form-group">
+                <label for="matiere">Matière</label>
+                 <select multiple class="form-control" id="matiereIds" name="matiereIds" >
+                <option th:each="matiere : ${matieres}" th:value="${matiere.id}" th:text="${matiere.matiére}"></option>
+            </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="dateAbsence" name="dateAbsence" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="reason">Raison</label>
+                <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+            </div>
+            
+             <div class="form-group">
+				 
+            <label for="heures">Nombre d'heures d'absence:</label>
+            <input type="number" id="heures" name="heures" class="form-control" step="0.01" required>
+        </div>
+        
+          
+        
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+        <a th:href="@{/etudiants/etudiant/{id}(id=${etudiant.id})}" class="btn btn-secondary mt-3">Retour</a>
+    </div>
+						</div>
+					</div>
+				</div>
+				
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+  <!-- Required vendors -->
+<script th:src="@{/js/global.min.js}"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/js/custom.min.js}"></script>
+	<script th:src="@{/js/dlabnav-init.js}"></script>
+
+	<!-- Svganimation scripts -->
+    <script th:src="@{/js/vivus.min.js}"></script>
+    <script th:src="@{/js/svg.animation.js}"></script>
+    <script th:src="@{/js/styleSwitcher.js}"></script>
+	
+	<!-- pickdate -->
+    <script th:src="@{/js/picker.js}"></script>
+    <script th:src="@{/js/picker.time.js}"></script>
+    <script th:src="@{/js/picker.date.js}"></script>
+	
+	<!-- Pickdate -->
+    <script th:src="@{/js/pickadate-init.js}"></script>
+	
+</body>
+</html>

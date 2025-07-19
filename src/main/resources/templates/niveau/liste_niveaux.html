@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Niveaux</title>
+</head>
+<body>
+    <h1>Liste des Niveaux</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Boucle pour afficher chaque niveau -->
+            <tr th:each="niveau : ${niveaux}">
+                <td th:text="${niveau.id}"></td>
+                <td th:text="${niveau.nom}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

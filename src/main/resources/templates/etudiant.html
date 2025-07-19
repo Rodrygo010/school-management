@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Edumin - Bootstrap Admin Dashboard </title>
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}">
+	<!-- Datatable -->
+	<link th:href="@{css/jquery.dataTables.min.css}" rel="stylesheet">
+	 <link rel="stylesheet" th:href="@{/css/style.css}">
+	
+	 
+
+
+
+</head>
+
+<body>
+
+	<div th:insert="fragments/sidebar :: sidebar"></div>
+
+
+
+		<!--**********************************
+            Content body start
+        ***********************************-->
+		<div class="content-body">
+			<!-- row -->
+			<div class="container-fluid">
+
+				<div class="row page-titles mx-0">
+					<div class="col-sm-6 p-md-0">
+						<div class="welcome-text">
+							<h4>All Student</h4>
+						</div>
+					</div>
+					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0);">Students</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0);">All Student</a></li>
+						</ol>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<ul class="nav nav-pills mb-3">
+							<li class="nav-item"><a href="#list-view" data-toggle="tab"
+									class="nav-link btn-primary mr-1 show active">List View</a></li>
+							<li class="nav-item"><a href="#grid-view" data-toggle="tab"
+									class="nav-link btn-primary">Grid View</a></li>
+						</ul>
+					</div>
+					
+					<div class="col-lg-12">
+						<div class="row tab-content">
+							<div id="list-view" class="tab-pane fade active show col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">All Students List </h4>
+										<a href="ajouteretudiant" class="btn btn-primary">+ Add new</a>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											
+											<table id="example3" class="display" style="min-width: 845px">
+												<thead>
+													<tr>
+														<th></th>
+														<th>Prenom</th>
+														<th>Nom</th>
+														<th>Mobile</th>
+														<th>Email</th>
+														<th>Date de naissance</th>
+														<th>Age</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+
+
+													<tr th:each="etudiant : ${etudiant}">
+														<td><img class="rounded-circle" width="35"
+																th:src="'data:image/jpeg;base64,' + ${etudiant.photo_etudiant}"
+																alt=""></td>
+
+														<td th:text="${etudiant.prenom}"></td>
+														<td th:text="${etudiant.nom}"></td>
+														<td><a href="javascript:void(0);"><strong
+																	th:text="${etudiant.numtel}"></strong></a></td>
+														<td><a href="javascript:void(0);"><strong
+																	th:text="${etudiant.email}"></strong></a>
+														</td>
+														<td th:text="${#dates.format(etudiant.date_naissance, 'd MMM, yyyy')}">></td>
+														    
+														<td th:text="${etudiant.age}"></td>
+														 
+            <td>
+    <div class="d-flex justify-content-between">
+        <a th:href="@{'/etudiants/edit/'+${etudiant.id}}" class="btn btn-sm btn-primary flex-fill mr-1"><i class="la la-pencil"></i>Edit</a>
+        <a th:href="@{'/etudiants/delet/'+${etudiant.id}}" class="btn btn-sm btn-danger flex-fill mr-1"><i class="la la-trash-o"></i>Supprimer</a>
+        
+    </div>
+</td>
+
+
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div id="grid-view" class="tab-pane fade col-lg-12">
+								<div class="row">
+									<div class="col-lg-4 col-md-6 col-sm-6 col-12" th:each="etudiant : ${etudiant}">
+										<div class="card card-profile">
+											<div class="card-header justify-content-end pb-0">
+												<div class="dropdown">
+													<button class="btn btn-link" type="button" data-toggle="dropdown">
+														<span class="dropdown-dots fs--1"></span>
+													</button>
+													<div class="dropdown-menu dropdown-menu-right border py-0">
+														<div class="py-2">
+															<a class="dropdown-item btn btn-block" th:href="@{'/etudiants/edit/'+${etudiant.id}}">Edit</a>
+															<a class="dropdown-item btn btn-block text-danger" th:href="@{'/etudiants/delet/'+${etudiant.id}}">Delete</a>
+														
+        
+															<a class="dropdown-item btn btn-block"
+																th:href="@{/notes/{etudiantId}/notes(etudiantId=${etudiant.id})}">Notes</a>
+															<a class="dropdown-item btn btn-block"
+																th:href="@{/notes/etudiant/{etudiantId}/ajouter-note(etudiantId=${etudiant.id})}">Ajouter note</a>
+														</div>
+													</div>
+													</div>
+													</div>
+
+
+											<div class="card-body pt-2">
+												<div class="text-center">
+													<div class="profile-photo">
+														<img th:src="'data:image/jpeg;base64,' + ${etudiant.photo_etudiant}"
+															width="100" class="img-fluid rounded-circle" alt="">
+													</div>
+													<h3 class="mt-4 mb-1" th:text="${etudiant.nom}"></h3>
+													<p class="text-muted" th:text="${etudiant.prenom}"></p>
+													<ul class="list-group mb-3 list-group-flush">
+														<li class="list-group-item px-0 d-flex justify-content-between">
+															<span>Classe :</span><strong
+																th:text="${etudiant.classe.nom}"></strong>
+														</li>
+														<li class="list-group-item px-0 d-flex justify-content-between">
+															<span class="mb-0">tel :</span><strong
+																th:text="${etudiant.numtel}"></strong>
+														</li>
+														<li class="list-group-item px-0 d-flex justify-content-between">
+															<span class="mb-0">Date de naissance :</span><strong
+																th:text="${#dates.format(etudiant.date_naissance, 'dd/MM/yyyy')}"></strong>
+																
+														</li>
+														<li class="list-group-item px-0 d-flex justify-content-between">
+															<span class="mb-0">Email:</span><strong
+																th:text="${etudiant.email}"></strong>
+
+														</li>
+													</ul>
+													<a class="btn btn-outline-primary btn-rounded mt-3 px-4"
+														th:href="@{/etudiants/etudiant/{id}(id=${etudiant.id})}">Read More</a>
+														
+														
+														
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!--**********************************
+            Content body end
+        ***********************************-->
+
+
+		<!--**********************************
+            Footer start
+        ***********************************-->
+		<div class="footer">
+			<div class="copyright">
+				<p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+			</div>
+		</div>
+		<!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+	</div>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+	<!--**********************************
+        Scripts
+    ***********************************-->
+	   <!-- Required vendors -->
+<script th:src="@{/js/global.min.js}"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/js/custom.min.js}"></script>
+	<script th:src="@{/js/dlabnav-init.js}"></script>
+
+	<!-- Datatable -->
+	<script th:src="@{js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{js/datatables.init.js}"></script>
+
+	<!-- Svganimation scripts -->
+    <script th:src="@{/js/vivus.min.js}"></script>
+    <script th:src="@{/js/svg.animation.js}"></script>
+    <script th:src="@{/js/styleSwitcher.js}"></script>
+
+</body>
+
+</html>

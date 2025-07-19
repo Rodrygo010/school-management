@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Edumin - Bootstrap Admin Dashboard </title>
+    
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}">
+	<!-- Datatable -->
+	<link th:href="@{css/jquery.dataTables.min.css}" rel="stylesheet">
+	 <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+ <div th:insert="fragments/sidebar :: sidebar"></div>
+
+		
+		
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+				
+				<div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Paiements</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Library</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Library Assets</a></li>
+                        </ol>
+                    </div>
+                </div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Paiements List</h4>
+								<a href="ajouterpaiement" class="btn btn-primary">+ Add new</a>
+							</div>
+							<div class="card-body">
+								<div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Etudiants</th>
+                            <th>Montant</th>
+                            <th>Date de Paiement</th>
+                            <th>Total Initial à Payer</th>
+                            <th>Total Restant à Payer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="paiement : ${paiements}">
+                            <td th:text="${paiement.etudiant.nom} + ' ' + ${paiement.etudiant.prenom}"></td>
+                            <td th:text="${paiement.montant}"></td>
+                            <td th:text="${#dates.format(paiement.datePaiement, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${paiement.etudiant.initialTotalPaiement}"></td>
+                            <td th:text="${paiement.etudiant.totalPaiement}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                 <h2>Sélectionner un étudiant pour voir ses paiements</h2>
+   <form th:action="@{/paiements/etudiant}" method="get">
+    <select name="etudiantId">
+        <option th:each="etudiant : ${etudiants}" th:value="${etudiant.id}" th:text="${etudiant.nom + ' ' + etudiant.prenom}">Étudiant</option>
+    </select>
+    <button type="submit">Voir Paiements</button>
+</form>
+
+                
+                
+                
+       
+
+            </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    
+      <!-- Required vendors -->
+<script th:src="@{/js/global.min.js}"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/js/custom.min.js}"></script>
+	<script th:src="@{/js/dlabnav-init.js}"></script>
+
+	<!-- Datatable -->
+	<script th:src="@{js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{js/datatables.init.js}"></script>
+
+	<!-- Svganimation scripts -->
+    <script th:src="@{/js/vivus.min.js}"></script>
+    <script th:src="@{/js/svg.animation.js}"></script>
+    <script th:src="@{/js/styleSwitcher.js}"></script>
+	
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Edumin - Bootstrap Admin Dashboard </title>
+    
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}">
+	<!-- Datatable -->
+	<link th:href="@{css/jquery.dataTables.min.css}" rel="stylesheet">
+	 <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<div th:insert="fragments/sidebar :: sidebar"></div>
+
+		
+		
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+				
+				<div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Absences</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Library</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Library Assets</a></li>
+                        </ol>
+                    </div>
+                </div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-header">
+								
+							</div>
+							<div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Absences</h4>
+                            </div>
+                            
+                            
+                            <div class="container mt-5">
+        
+       <div class="container mt-5">
+        <h2>Absences pour <span th:text="${etudiant.nom} + ' ' + ${etudiant.prenom}"></span></h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date d'absence</th>
+                    <th>Raison</th>
+                    <th>Matiére</th>
+                    <th>Heures</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="absence : ${absences}">
+                    <td th:text="${#dates.format(absence.dateAbsence, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${absence.reason}"></td>
+                    <td>
+                    <ul>
+                        <li th:each="matiere : ${absence.matieres}" th:text="${matiere.matiére}"></li>
+                    </ul>
+                </td>
+                    <td th:text="${absence.heures}"></td>
+                      <td>
+                    <a class="btn btn-primary btn-sm" th:href="@{/absences/etudiant/{etudiantId}/modifier-absence/{absenceId}(etudiantId=${etudiant.id}, absenceId=${absence.id})}">Modifier</a>
+                        <form th:action="@{/absences/{absenceId}/supprimer(absenceId=${absence.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+         <div>
+        <a th:href="@{/absences/etudiant/{etudiantId}/ajouter-absence(etudiantId=${etudiant.id})}" class="btn btn-primary btn-sm">Ajouter une absence</a>
+    </div>
+    
+        <a th:href="@{/etudiants/etudiant/{id}(id=${etudiant.id})}" class="btn btn-secondary">Retour</a>
+    </div>
+    </div>
+                        </div>
+</div>
+						</div>
+					</div>
+				</div>
+				
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    
+      <!-- Required vendors -->
+<script th:src="@{/js/global.min.js}"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/js/custom.min.js}"></script>
+	<script th:src="@{/js/dlabnav-init.js}"></script>
+
+	<!-- Datatable -->
+	<script th:src="@{js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{js/datatables.init.js}"></script>
+
+	<!-- Svganimation scripts -->
+    <script th:src="@{/js/vivus.min.js}"></script>
+    <script th:src="@{/js/svg.animation.js}"></script>
+    <script th:src="@{/js/styleSwitcher.js}"></script>
+	
+</body>
+</html>
+
+
+
+
+

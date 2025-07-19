@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Edumin - Bootstrap Admin Dashboard </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+	
+	<!-- Pick date -->
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/default.date.css}">
+
+</head>
+
+<body>
+
+     <div th:insert="fragments/sidebar :: sidebar"></div>
+
+		
+		
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+				
+				<div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Add Student</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Students</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Add Student</a></li>
+                        </ol>
+                    </div>
+                </div>
+				
+				
+				<div class="row">
+					<div class="col-xl-12 col-xxl-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+								<h5 class="card-title">Basic Info</h5>
+							</div>
+							<div class="card-body">
+                                <form action="/etudiants/ajouteretudiant" method="post" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Nom</label>
+												<input type="text" class="form-control" name="nom">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Prenom</label>
+												<input type="text" class="form-control" name="prenom">
+											</div>
+										</div>
+										
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Date d'insription</label>
+												<input type="date" name="date_inscription" class="form-control" id="datepicker">
+											</div>
+										</div>
+										
+										
+										
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Sex</label>
+												<select class="form-control" name="sex">
+													<option value="Gender">Sex</option>
+													<option value="Male">Homme</option>
+													<option value="Female">Femme</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Numéro du telephone</label>
+												<input type="text" class="form-control" name="num_tel">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Nom du parent</label>
+												<input type="text" class="form-control" name="nom_tuteur">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Numéro de parent</label>
+												<input type="text" class="form-control" name="num_tuteur">
+											</div>
+										</div>
+										
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">date naissance</label>
+												<input type="date" class="form-control" name="date_naissance"  id="datepicker1">
+											</div>
+										</div>
+										
+										
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Email</label>
+												<input type="email" class="form-control" name="email">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">mot de passe</label>
+												<input type="password" class="form-control" name="mdp">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Role</label>
+												<input type="text" class="form-control" name="role">
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Address</label>
+												<textarea class="form-control" rows="5" name="adresse"></textarea>
+											</div>
+										</div>
+										
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group">
+												<label for="niveau">Niveau :</label>
+												<select id="niveau" name="niveauId" class="form-control">
+													<option th:each="niveau : ${niveaux}" th:value="${niveau.id}" th:text="${niveau.nom}"></option>
+												</select>
+											</div>
+										</div>
+										
+										
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group">
+												<label for="classe">Classe :</label>
+												<select id="classe" name="classeId" class="form-control">
+													<option th:each="classe : ${classes}" th:value="${classe.id}" th:text="${classe.nom}"></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="initialTotalPaiement">Total Initial à Payer :</label>
+											<input type="number" step="0.01" class="form-control" id="initialTotalPaiement" name="initialTotalPaiement">
+										</div>
+    
+    
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group fallback w-100">
+												<label for="image">Image:</label>
+												<input type="file" class="dropify" data-default-file="" name="photo_etudiant"  accept="image/*">
+											</div>
+										</div>
+										
+
+										
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<button type="submit" class="btn btn-primary">Submit</button>
+											<button type="submit" class="btn btn-light">Cencel</button>
+										</div>
+									</div>
+								</form>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+                
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+   <script th:src="@{/js/global.min.js}"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/js/custom.min.js}"></script>
+	<script th:src="@{/js/dlabnav-init.js}"></script>
+
+	<!-- Svganimation scripts -->
+    <script th:src="@{/js/vivus.min.js}"></script>
+    <script th:src="@{/js/svg.animation.js}"></script>
+    <script th:src="@{/js/styleSwitcher.js}"></script>
+	
+	<!-- pickdate -->
+    <script th:src="@{/js/picker.js}"></script>
+    <script th:src="@{/js/picker.time.js}"></script>
+    <script th:src="@{/js/picker.date.js}"></script>
+	
+	<!-- Pickdate -->
+    <script th:src="@{/js/pickadate-init.js}"></script>
+	
+</body>
+</html>

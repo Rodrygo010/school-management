@@ -1,0 +1,24 @@
+<tr th:each="prof : ${prof}">
+														<td><img class="rounded-circle" width="35"
+																th:src="'data:image/jpeg;base64,' + ${prof.Image}"
+																alt=""></td>
+
+														<td th:text="${prof.prenom}"></td>
+														<td th:text="${prof.nom}"></td>
+														<td><a href="javascript:void(0);"><strong
+																	th:text="${prof.numtel}"></strong></a></td>
+														<td><a href="javascript:void(0);"><strong
+																	th:text="${prof.email}"></strong></a>
+														</td>
+														<td th:text="${#dates.format(prof.Datenaissance, 'dd/MM/yyyy')}">></td>
+														<td th:text="${prof.age}"></td>
+														<td>
+															<a th:href="@{'/edit/'+${prof.id}}"
+																class="btn btn-sm btn-primary"><i
+																	class="la la-pencil"></i>Edit</a>
+																	
+															<a th:href="@{'/supprimer/'+${prof.id}}"
+																class="btn btn-sm btn-danger"><i
+																	class="la la-trash-o"></i>Supprimer</a>
+														</td>
+													</tr>

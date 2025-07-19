@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Edumin - Bootstrap Admin Dashboard </title>
+    <!-- Favicon icon -->
+     <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+  <div th:insert="fragments/sidebar :: sidebar"></div>
+
+		
+		
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+				    
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Course Details</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Courses</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Course Details</a></li>
+                        </ol>
+                    </div>
+                </div>
+				
+				<div class="row">
+					<div class="col-xl-3 col-xxl-4 col-lg-4">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<img class="img-fluid" th:src="'data:image/jpeg;base64,' + ${cours.imageCours}">
+									<div class="card-body">
+										<h4 class="mb-0" th:text="${cours.titre}"></h4>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<h2 class="card-title">About Course</h2>
+									</div>
+									<div class="card-body pb-0">
+										<ul class="list-group list-group-flush">
+											
+											<li class="list-group-item d-flex px-0 justify-content-between">
+												<strong>Professor</strong>
+												<span class="mb-0" th:text="${cours.nomprof}"></span>
+											</li>
+											
+											<li class="list-group-item d-flex px-0 justify-content-between">
+												<strong>Date</strong>
+												<span class="mb-0" th:text="${#dates.format(cours.datecours, 'dd/MM/yyyy')}">></span>
+											</li>
+											
+											 <li class="list-group-item px-0 d-flex justify-content-between">
+   <strong>Classe</strong>
+    <strong class="mb-0" th:text="${cours.classe.nom} + ' - ' + ${cours.classe.niveau.nom}"></strong>
+</li>
+										</ul>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-9 col-xxl-8 col-lg-8">
+						<div class="card">
+							<div class="card-body">
+								<p th:text="${cours.CoursInformation}"></p>
+								
+								<!--<h4 class="text-primary">Our Courses</h4>
+								<div class="profile-skills pt-2 border-bottom-1 pb-2">
+									<a href="javascript:void()" class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-3 m-b-10">Computer</a>
+									<a href="javascript:void()" class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-3 m-b-10">Programming</a>
+									<a href="javascript:void()" class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-3 m-b-10">Photoshop</a>
+									<a href="javascript:void()" class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-3 m-b-10">Management</a>
+								</div>
+								<div class="profile-lang pt-5 border-bottom-1 pb-5">
+									<h4 class="text-primary mb-4">Language</h4><a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-us"></i> English</a> <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-fr"></i> French</a>
+									<a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-bd"></i> Bangla</a>
+								</div>-->
+								<h4 class="text-primary">Courses Vedio</h4>
+								<div class="embed-responsive embed-responsive-16by9">
+									<video class="embed-responsive-item" controls>
+										<source th:src="@{'data:video/mp4;base64,' + ${cours.vedioCours}}" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script th:src="@{/js/global.min.js}"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/js/custom.min.js}"></script>
+	<script th:src="@{/js/dlabnav-init.js}"></script>
+	
+	<!-- Svganimation scripts -->
+    <script th:src="@{/js/vivus.min.js}"></script>
+    <script th:src="@{/js/svg.animation.js}"></script>
+    <script th:src="@{/js/styleSwitcher.js}"></script>
+	
+</body>
+</html>
