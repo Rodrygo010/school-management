@@ -36,7 +36,7 @@ public class AdminController {
 	        admin.setNom(nom);
 	        admin.setPrenom(prenom);
 	        admin.setUsername(username);
-	        admin.setUsername(role);
+	        admin.setRole(role);
 	        admin.setPassword(passwordEncoder.encode(password));
 
 	        	        
